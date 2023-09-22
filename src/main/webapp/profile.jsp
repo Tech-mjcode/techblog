@@ -13,6 +13,9 @@
     if (user == null) {
         response.sendRedirect("login_page.jsp");
     }
+    
+    System.out.println(user.getPassword());
+    
 
 
 %>
@@ -242,7 +245,7 @@
                                         </tr>
                                         <tr>
                                             <td>Password :</td>
-                                            <td> <input type="password" class="form-control" name="user_password" value="<%= user.getPassword()%>" > </td>
+                                            <td> <input type="text" class="form-control" name="user_password" value="<%= user.getPassword()%>" > </td>
                                         </tr>
                                         <tr>
                                             <td>Gender :</td>

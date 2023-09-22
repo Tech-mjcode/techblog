@@ -36,7 +36,6 @@ public class LoginServlet extends HttpServlet {
 		}else {
 			 HttpSession session = request.getSession();
 			 session.setAttribute("currentUser", user);
-			 System.out.println(user);
 			 response.sendRedirect("profile.jsp");
 		}
 	}

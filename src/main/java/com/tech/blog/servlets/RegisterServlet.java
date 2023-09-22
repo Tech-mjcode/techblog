@@ -35,7 +35,7 @@ public class RegisterServlet extends HttpServlet {
 				u.setAbout(about);
 			
 				UserDao udao = new UserDao(ConnectionProvider.getConnection());
-				System.out.println(u);
+				
 				
 				if(udao.saveUser(u)) {
 					response.getWriter().print("done");

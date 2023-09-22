@@ -49,6 +49,7 @@ public class UserDao {
 			if(rs.next()) {
 				u = new User();
 				u.setName(rs.getString("name"));
+				u.setPassword(rs.getString("password"));
 				u.setId(rs.getInt("id"));
 				u.setEmail(rs.getString("email"));
 				u.setGender(rs.getString("gender"));
@@ -63,5 +64,26 @@ public class UserDao {
 			}
 			
 			return u;
+		}
+		
+		public boolean updateUser(User u) {
+			boolean f = false;
+			String query = "update user set email = ? , name = ? , password = ? , about = ? , profile = ?  where id = ?";
+			try {
+				
+				PreparedStatement ps = con.prepareStatement(query);
+				ps.setString(1, u.getEmail());
+				ps.setString(2, u.getName());
+				ps.setString(3, u.getPassword());
+				ps.setString(4, u.getAbout());
+				ps.setString(5, u.getProfile());
+				ps.setInt(6, u.getId());
+				ps.executeUpdate();
+				f = true;
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			return f;
 		}
 }
