@@ -139,7 +139,7 @@
                             <a href="#" onclick="getPosts(<%= cc.getCid()%>, this)" class=" c-link list-group-item list-group-item-action"><%= cc.getName()%></a>
 
 
-                            <%                                        }
+                            <%   }
 
                             %>
                         </div>
@@ -305,7 +305,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <form id="add-post-form" action="AddPostServlet" method="post">
+                        <form id="add-post-form" action="AddPostServlet" method="post" enctype="multipart/form-data">
 
                             <div class="form-group">
                                 <select class="form-control" name="cid">
@@ -407,7 +407,6 @@
         <!--now add post js-->
         <script>
             $(document).ready(function (e) {
-                //
                 $("#add-post-form").on("submit", function (event) {
                     //this code gets called when form is submitted....
                     event.preventDefault();
@@ -421,10 +420,15 @@
                         data: form,
                         success: function (data, textStatus, jqXHR) {
                             //success ..
-                            console.log(data);
+                            
                             if (data.trim() == 'done')
                             {
-                                swal("Good job!", "saved successfully", "success");
+                                swal("Good job!", "saved successfully", "success")
+                                .then(() => {
+                                	$('#add-post-form')[0].reset();
+                                    window.location = "profile.jsp"
+                                });
+                                
                             } else
                             {
                                 swal("Error!!", "Something went wrong try again...", "error");
