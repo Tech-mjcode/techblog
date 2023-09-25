@@ -31,12 +31,12 @@ public class AddPostServlet extends HttpServlet {
 		post.setpTitle(pTitle);
 		post.setpContent(pContent);
 		post.setpCode(pCode);
-		post.setpPic(pImageName);
+	
 		
 		HttpSession s = request.getSession();
 		User u =(User) s.getAttribute("currentUser");
 		post.setuId(u.getId());
-		
+		post.setpPic(u.getId()+pImageName);
 		PostDao pdao = new PostDao(ConnectionProvider.getConnection());
 		boolean savePost = pdao.savePost(post);
 		if(savePost) {

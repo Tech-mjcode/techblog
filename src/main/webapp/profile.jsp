@@ -118,7 +118,7 @@
 
 
         <!--main body of the page-->
-
+<!-- 		for showing the post and category -->
         <main>
             <div class="container">
                 <div class="row mt-4">
@@ -425,7 +425,7 @@
                             {
                                 swal("Good job!", "saved successfully", "success")
                                 .then(() => {
-                                	$('#add-post-form')[0].reset();
+//                                 	$('#add-post-form')[0].reset();
                                     window.location = "profile.jsp"
                                 });
                                 
@@ -447,22 +447,25 @@
 
         <!--loading post using ajax-->
         <script>
-
+			
+        	//temp means object of clicking element
             function getPosts(catId, temp) {
                 $("#loader").show();
                 $("#post-container").hide()
-
-                $(".c-link").removeClass('active')
+//                 remove the class active from all link
+				$(".c-link").removeClass('active')
 
 
                 $.ajax({
                     url: "load_posts.jsp",
+                    //send data parameter cid and data catId
                     data: {cid: catId},
                     success: function (data, textStatus, jqXHR) {
                         console.log(data);
                         $("#loader").hide();
                         $("#post-container").show();
                         $('#post-container').html(data)
+                        //add class active for temp element
                         $(temp).addClass('active')
 
                     }
@@ -472,8 +475,9 @@
 
             $(document).ready(function (e) {
 
-                let allPostRef = $('.c-link')[0]
-                getPosts(0, allPostRef)
+                
+                let first = $('.c-link')[0]
+                getPosts(0, first)
 
 
             })
