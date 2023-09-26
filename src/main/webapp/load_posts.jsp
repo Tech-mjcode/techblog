@@ -24,11 +24,17 @@
 	%>
 	<div class="col-md-6 mt-2">
 		<div class = "card">
-			<img src="pics/<%= post.getpPic() %>" class="card-img-top" alt="...">
+			<img src="pics/<%= post.getpPic() %>" class="card-img-top" alt="..." width="300px" height="300px">
 			<div class = card-body>
-				<h1><%= post.getpTitle() %></h1>
-				<p><%= post.getpContent() %></p>
-				<pre><%= post.getpCode() %></pre>
+				<h3><%= post.getpTitle() %></h3>
+<%-- 				<p><%= post.getpContent() %></p> --%>
+<%-- 				<pre><%= post.getpCode() %></pre> --%>
+
+			</div>
+			<diV class = "card-footer primary-background text-center">
+				<a href="#" class = "btn btn-outline-light"><i class = "fa fa-thumbs-o-up"><span> 10</span></i></a>
+				<a href="show_blog_page.jsp?post_id=<%= post.getpId() %>" class = "btn btn-outline-light">Read more</a>
+				<a href="#" class = "btn btn-outline-light"><i class = "fa fa-commenting-o"><span> 20</span></i></a>
 			</div>
 		</div>
 	</div>
