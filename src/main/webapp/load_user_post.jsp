@@ -8,13 +8,8 @@
 	<%
 	Thread.sleep(500);
 	PostDao pDao = new PostDao(ConnectionProvider.getConnection());
-	int catId = Integer.parseInt(request.getParameter("cid"));
-	ArrayList<Post> p = null;
-	if(catId == 0){
-		p = pDao.getAllPost();
-	}else{
-		p = pDao.getAllPostByCattegory(catId);
-	}
+	int uId = Integer.parseInt(request.getParameter("u_Id"));
+	ArrayList<Post> p = pDao.getAllPostOfUser(uId);
 	
 	if(p.size()==0){
 		out.println("<h3 class = 'container display-3 text-center'>No Post</h3>");
@@ -32,9 +27,9 @@
 
 			</div>
 			<diV class = "card-footer primary-background text-center">
-				<a href="#" class = "btn btn-outline-light"><i class = "fa fa-thumbs-o-up"><span> 10</span></i></a>
-				<a href="show_blog_page.jsp?post_id=<%= post.getpId() %>" class = "btn btn-outline-light">Read more</a>
-				<a href="#" class = "btn btn-outline-light"><i class = "fa fa-commenting-o"><span> 20</span></i></a>
+				<a href="#" class = "btn btn-outline-light"><i class="fa fa-trash"></i> Remove</a>
+				
+				<a href="#" class = "btn btn-outline-light"><i class="fa fa-pencil"><span> Edit</span></i></a>
 			</div>
 		</div>
 	</div>

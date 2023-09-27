@@ -1,3 +1,5 @@
+<%@page import="java.text.DateFormat"%>
+<%@page import="com.tech.blog.dao.UserDao"%>
 <%@page import="com.tech.blog.entities.Post"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.tech.blog.helper.ConnectionProvider"%>
@@ -68,7 +70,7 @@ Post p = pDao.getAllPostByPostId(post_id);
 }
 </style>
 </head>
-<body>
+<body class = "primary-background">
 	<!-- 			addNavbar -->
 	<%@ include file="normal_navbar.jsp" %>
 <!-- 				end of nav -->
@@ -91,7 +93,10 @@ Post p = pDao.getAllPostByPostId(post_id);
 							height="500px"> <br> <br>
 						<div class="row row-user">
 							<div class="col col-md-8 post-user-info">
-								<p>Manash posted :</p>
+							<% UserDao uDao = new UserDao(ConnectionProvider.getConnection());
+								User u1 = uDao.getUserById(p.getuId());
+							%>
+								<p><a href="#"><%= u1.getName() %></a> has posted :</p>
 							</div>
 							<div class="col col-md-4 post-date">
 								<p><%=p.getpDate().toLocaleString()%></p>
@@ -100,7 +105,7 @@ Post p = pDao.getAllPostByPostId(post_id);
 						<p class="post-content"><%=p.getpContent()%></p>
 						<br> <br>
 						<div class="post-code">
-							<pre><%=p.getpCode()%></pre>
+							<pre><%= DateFormat.getDateTimeInstance().format(p.getpDate())%></pre>
 						</div>
 					</div>
 

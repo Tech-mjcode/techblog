@@ -144,5 +144,35 @@ public class PostDao {
 
 		return p;
 	}
+	
+	public ArrayList<Post> getAllPostOfUser(int uId){
+		ArrayList<Post> allPost = new ArrayList<Post>();
+
+		try {
+
+			String query = "Select * from post where u_id = ?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, uId);
+
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Post p = new Post();
+				p.setpId(rs.getInt("p_id"));
+				p.setpTitle(rs.getString("p_title"));
+				p.setcId(rs.getInt("c_id"));
+				p.setpCode(rs.getString("p_code"));
+				p.setpContent(rs.getString("p_content"));
+				p.setpDate(rs.getTimestamp("p_date"));
+				p.setpPic(rs.getString("p_pic"));
+				p.setuId(rs.getInt("u_id"));
+				allPost.add(p);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return allPost;
+	}
 
 }

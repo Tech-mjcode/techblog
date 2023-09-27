@@ -45,12 +45,18 @@
 
         </style>
     </head>
-    <body>
+    <body class = "primary-background">
         <!--navbar--> 
 		<%@ include file="normal_navbar.jsp" %>
         <!--end of navbar-->
 
 
+        
+
+
+        <!--main body of the page-->
+<!-- 		for showing the post and category -->
+        <main>
         <%
             Message m = (Message) session.getAttribute("msg");
             if (m != null) {
@@ -65,39 +71,10 @@
             }
 
         %>
-
-
-        <!--main body of the page-->
-<!-- 		for showing the post and category -->
-        <main>
             <div class="container">
                 <div class="row mt-4">
-                    <!--first col-->
-                    <div class="col-md-4">
-                        <!--categories-->
-                        <div class="list-group">
-                            <a href="#" onclick="getPosts(0, this)"  class=" c-link list-group-item list-group-item-action active">
-                                All Posts
-                            </a>
-                            <!--categories-->
-
-                            <%  PostDao d = new PostDao(ConnectionProvider.getConnection());
-                                ArrayList<Category> list1 = d.getAllCategories();
-                                for (Category cc : list1) {
-
-                            %>
-                            <a href="#" onclick="getPosts(<%= cc.getCid()%>, this)" class=" c-link list-group-item list-group-item-action"><%= cc.getName()%></a>
-
-
-                            <%   }
-
-                            %>
-                        </div>
-
-                    </div>
-
-                    <!--second col-->
-                    <div class="col-md-8" >
+                
+                    <div class="col col-md-10 offset-1 " >
                         <!--posts-->
                         <div class="container text-center" id="loader">
                             <i class="fa fa-refresh fa-4x fa-spin"></i>
@@ -321,6 +298,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
         <script src="js/js.js" type="text/javascript"></script>
+        <script src="js/getPost.js" type="text/javascript"></script>
 
         <script>
                                 $(document).ready(function () {
@@ -395,43 +373,7 @@
             })
         </script>
 
-        <!--loading post using ajax-->
-        <script>
-			
-        	//temp means object of clicking element
-            function getPosts(catId, temp) {
-                $("#loader").show();
-                $("#post-container").hide()
-//                 remove the class active from all link
-				$(".c-link").removeClass('active')
-
-
-                $.ajax({
-                    url: "load_posts.jsp",
-                    //send data parameter cid and data catId
-                    data: {cid: catId},
-                    success: function (data, textStatus, jqXHR) {
-                        console.log(data);
-                        $("#loader").hide();
-                        $("#post-container").show();
-                        $('#post-container').html(data)
-                        //add class active for temp element
-                        $(temp).addClass('active')
-
-                    }
-                })
-
-            }
-
-            $(document).ready(function (e) {
-
-                
-                let first = $('.c-link')[0]
-                getPosts(0, first)
-
-
-            })
-        </script>
+    
 
     </body>
 </html>

@@ -32,7 +32,7 @@
 	<div class="container-fluid p-0 m-0">
 
 		<div class="jumbotron primary-background text-white banner-background">
-			<div class="container">
+			<div class="container mt-5">
 				<h3 class="display-3">Welcome to TechBlog</h3>
 
 				<p>Welcome to technical blog, world of technology A programming
@@ -44,15 +44,13 @@
 					computers. There are programmable machines that use a set of
 					specific instructions, rather than general programming languages.</p>
 
-				<button class="btn btn-outline-light btn-lg">
-					<span class="fa fa fa-user-plus"></span> Start ! its Free
-				</button>
-				<a href="login_page.jsp" class="btn btn-outline-light btn-lg"> <span
-					class="fa fa-user-circle fa-spin"></span> Login
-				</a>
+				
+				
 
 			</div>
 		</div>
+		
+		
 
 	</div>
 
