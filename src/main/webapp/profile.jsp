@@ -299,6 +299,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
         <script src="js/js.js" type="text/javascript"></script>
         <script src="js/getPost.js" type="text/javascript"></script>
+        <script src="js/like.js" type="text/javascript"></script>
 
         <script>
                                 $(document).ready(function () {

@@ -17,7 +17,7 @@ if (u == null) {
 	<a class="navbar-brand" href="index.jsp"> <span
 		class="fa fa-home"></span> Tech Blog
 	</a>
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+	<div class="collapse navbar-brand navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto"></ul>
 		<ul class="navbar-nav mr-right">
 			<li class="nav-item"><a class="nav-link" href="login_page.jsp">

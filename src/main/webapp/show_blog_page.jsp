@@ -1,3 +1,4 @@
+<%@page import="com.tech.blog.dao.LikeDao"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="com.tech.blog.dao.UserDao"%>
 <%@page import="com.tech.blog.entities.Post"%>
@@ -110,15 +111,36 @@ Post p = pDao.getAllPostByPostId(post_id);
 					</div>
 
 					<diV class="card-footer primary-background">
-						<a href="#" class="btn btn-outline-light"><i
-							class="fa fa-thumbs-o-up"><span> 10</span></i></a> <a href="#"
-							class="btn btn-outline-light"><i class="fa fa-commenting-o"><span>
-									20</span></i></a>
+					
+						<% 
+							LikeDao lDao = new LikeDao(ConnectionProvider.getConnection());
+							boolean isLike = lDao.isLikeByUser(user.getId(), p.getpId());
+						%>
+						<a onclick="doLike(<%= user.getId()%>,<%= p.getpId()%>)" class="btn btn-outline-light"><i
+							class="fa fa-thumbs-o-up"><span class = "like-counter">  <%=lDao.getLikeOfPost(p.getpId()) %></span></i></a>
+						
+						<%if(isLike)
+						{
+						%>
+					
+						<a onclick="disLike(<%= user.getId()%>,<%= p.getpId()%>)"
+							class="dislike-class btn btn-outline-light"><i class="fa fa-thumbs-o-down"></i></a>
+						<%} %>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- 			end of main content -->
+	<script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+        <script src="js/js.js" type="text/javascript"></script>
+        <script src="js/getPost.js" type="text/javascript"></script>
+        <script src="js/like.js" type="text/javascript"></script>
 </body>
 </html>

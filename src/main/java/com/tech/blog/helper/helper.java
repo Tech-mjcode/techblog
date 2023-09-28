@@ -30,7 +30,7 @@ public class helper {
 		fos.close();
 		f = true;
 		}catch(Exception e) {
-			System.out.println("hiiiii");
+			
 			e.printStackTrace();
 		}
 		return f;
